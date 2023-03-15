@@ -12,8 +12,12 @@ export const apiKey = "VbWk7s3L4KiK5fzlO7JD3Q5EYolJI7n5";
 // # console and look for a request header called "x-resy-auth-token".
 // # e.g.
 // # resyKeys.auth-token="MY_AUTH_TOKEN"
+// Justinwlin@gmail.com
 export const authtoken =
-  "eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9.eyJleHAiOjE2ODE0NDA5MjUsInVpZCI6MTE2MTUyNDksImd0IjoiY29uc3VtZXIiLCJncyI6W10sImxhbmciOiJlbi11cyIsImV4dHJhIjp7Imd1ZXN0X2lkIjo1MjQyMTY0OH19.AEPnm66PMbrd45gdph6aa1AbLEt-EqW7-Ajt5LgFVVcoWgjB1EYfnc6WQtxnZxsZPrzAo2jxzDBFZVA-GfvHzw2kAGP1OlUoDSAmYMXuZGtoFH--sCcwuebnRJkKZw8vReYa6yQ4u4oY6QPJNiGz7D85gPHWjTT-bJKJiJ6KQYVLjgX7";
+  "eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9.eyJleHAiOjE2ODE2MjM5MjQsInVpZCI6Mzk5MjIwNDAsImd0IjoiY29uc3VtZXIiLCJncyI6W10sImV4dHJhIjp7Imd1ZXN0X2lkIjoxMzE4NzkzOTh9fQ.ANmhMF6Ad6mtxeeJ5utYySYVogNBTm15uI0igLFH0Br-7L8T8qlK8S54PWQPOgCjkfteqaqotCFO3JZbolagINeDAVSNzsDSBkUP1HEnR1OvHVKZuQTeRdjZ85Zuwgd0YlC-Vz1-_7ofsvsDYmsTl7uw-f-WIOQoYyVMF8svrbACkAe_";
+// @NYU
+// export const authtoken =
+//   "eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9.eyJleHAiOjE2ODE2MjM5MjQsInVpZCI6Mzk5MjIwNDAsImd0IjoiY29uc3VtZXIiLCJncyI6W10sImV4dHJhIjp7Imd1ZXN0X2lkIjoxMzE4NzkzOTh9fQ.ANmhMF6Ad6mtxeeJ5utYySYVogNBTm15uI0igLFH0Br-7L8T8qlK8S54PWQPOgCjkfteqaqotCFO3JZbolagINeDAVSNzsDSBkUP1HEnR1OvHVKZuQTeRdjZ85Zuwgd0YlC-Vz1-_7ofsvsDYmsTl7uw-f-WIOQoYyVMF8svrbACkAe_";
 
 // ######################
 // # ReservationDetails #
@@ -23,7 +27,7 @@ export const authtoken =
 // # become available.
 // # e.g.
 // # resDetails.date="2099-01-30"
-export const reservationDate = "2023-03-10";
+export const reservationDate = "2023-03-15";
 // # Size of the party reservation
 // # e.g.
 // # resDetails.party-size=2
@@ -33,7 +37,7 @@ export const partysize = 2;
 // # e.g.
 // # resDetails.venue-id=123
 // export const venueId = 42534; // The Chicken Bar
-export const venueId = 69088; // Testing venue
+export const venueId = 66711; // Testing venue
 // # Priority list of reservation times and table types. Time is in military time HH:MM:SS format. This
 // # allows full flexibility on your reservation preferences. For example, your priority order of reservations can be...
 // #   * 18:00 - Dining Room
@@ -48,7 +52,7 @@ export const venueId = 69088; // Testing venue
 // #     {reservationtime="18:15:00"}
 // # ]
 export const reservationTimes: { reservationtime: string; type?: string }[] = [
-  { reservationtime: "18:00:00", type: "Dining Room" },
+  { reservationtime: "18:00:00" },
   { reservationtime: "18:30:00" },
   { reservationtime: "19:00:00" },
   { reservationtime: "19:30:00" },

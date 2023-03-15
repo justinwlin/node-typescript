@@ -18,6 +18,7 @@ export function findReservations(param: {
   party_size: number;
   venue_id: string;
   apiKey: string;
+  reservationTimes: { reservationtime: string; type?: string }[];
 }): Promise<
   | formattedReservationToDateAndTime[]
   | {
@@ -32,6 +33,19 @@ export function findReservations(param: {
       Authorization: `ResyAPI api_key="${param.apiKey}"`,
     },
   };
+
+  // Convert reservationTimes into a Set of startTime
+  const reservationTimes = param.reservationTimes.map((time) => {
+    return time.reservationtime;
+  });
+  const reservationTimesSet = new Set(reservationTimes);
+
+  // const reservationTypes = param.reservationTimes.map((time) => {
+  //   return time.type;
+  // });
+  // const reservationTypesSet = new Set(reservationTypes);
+  // reservationTypesSet.delete(undefined);
+
   return axios(config)
     .then(function (response) {
       // Parse response for just slots
@@ -39,17 +53,20 @@ export function findReservations(param: {
         response.data.results.venues[0].slots;
       // Parse the available slots for just the date and config
       const availableSlotsFormatted: formattedReservationToDateAndTime[] =
-        availableSlots.map((slot) => {
-          // Date is formatted like: date: { end: '2023-03-10 18:30:00', start: '2023-03-10 17:00:00' }
-          // Split it from the date and time
-          return {
-            config: slot.config,
-            startdate: slot.date.start.split(" ")[0],
-            enddate: slot.date.end.split(" ")[0],
-            startTime: slot.date.start.split(" ")[1],
-            endTime: slot.date.end.split(" ")[1],
-          };
-        });
+        availableSlots
+          .filter((slot) => {
+            // Check if the startTime is in the reservationTimesSet
+            return reservationTimesSet.has(slot.date.start.split(" ")[1]);
+          })
+          .map((slot) => {
+            return {
+              config: slot.config,
+              startdate: slot.date.start.split(" ")[0],
+              enddate: slot.date.end.split(" ")[0],
+              startTime: slot.date.start.split(" ")[1],
+              endTime: slot.date.end.split(" ")[1],
+            };
+          });
       // Console the slots out
       return availableSlotsFormatted;
     })
@@ -97,6 +114,7 @@ export function bookReservation(param: {
   var data = qs.stringify({
     book_token: param.bookToken,
     source_id: "resy.com-venue-details",
+    struct_payment_method: '{"id":14077625}', // Special payment method id for credit card
   });
   var config = {
     method: "post",
